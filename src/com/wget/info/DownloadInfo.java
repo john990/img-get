@@ -5,18 +5,19 @@ package com.wget.info;
  * 下载文件信息
  */
 public class DownloadInfo {
-	private int size = 0;
+	private long size = 0;
 	private String name;
 	private String mime;
 	private String url;
 	private int percent;
 	private String outputName;
+	private String outputFloder;
 
-	public int getSize() {
+	public long getSize() {
 		return size;
 	}
 
-	public void setSize(int size) {
+	public void setSize(long size) {
 		this.size = size;
 	}
 
@@ -58,5 +59,13 @@ public class DownloadInfo {
 
 	public void setOutputName(String outputName) {
 		this.outputName = outputName;
+	}
+
+	public String getOutputFloder() {
+		return outputFloder;
+	}
+
+	public void setOutputFloder(String outputFloder) {
+		this.outputFloder = outputFloder;
 	}
 }
