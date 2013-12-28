@@ -1,6 +1,7 @@
 package com.get;
 
 import com.get.info.DownloadInfo;
+import com.get.util.Util;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -48,9 +49,9 @@ public class HttpDownloader extends Downloader {
 		try {
 			URLConnection conn = url.openConnection();
 			InputStream inStream = conn.getInputStream();
-			FileOutputStream fs = new FileOutputStream(downloadInfo.getOutputFloder()+downloadInfo.getOutputName());
+			FileOutputStream fs = new FileOutputStream(downloadInfo.getOutputFloder() + downloadInfo.getOutputName() + Util.mimeToCommmonType(conn.getContentType()));
 			size = conn.getContentLength();
-			downloadInfo.setSize((int)size);
+			downloadInfo.setSize((int) size);
 
 			if (listener != null) listener.onStart(downloadInfo);
 
@@ -58,7 +59,7 @@ public class HttpDownloader extends Downloader {
 			while ((readed = inStream.read(buffer)) != -1) {
 				downloaded += readed;
 				fs.write(buffer, 0, readed);
-				downloadInfo.setPercent((int)((downloaded / size) * 100));
+				downloadInfo.setPercent((int) ((downloaded / size) * 100));
 				if (listener != null) listener.onProgressChange(downloadInfo);
 			}
 			fs.flush();

@@ -6,7 +6,11 @@ package com.get.util;
  */
 public class Util {
 
-	public static String byteToKb(long bytes){
-		return ((float)bytes)/1024 + "KB";
+	public static String byteToKb(long bytes) {
+		return ((float) bytes) / 1024 + "KB";
+	}
+
+	public static String mimeToCommmonType(String mime) {
+		return "."+mime.substring(mime.lastIndexOf("/") + 1, mime.length());
 	}
 }

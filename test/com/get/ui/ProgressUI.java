@@ -45,7 +45,7 @@ public class ProgressUI implements WindowListener{
 		for (int i = 0; i < urls.length; i++) {
 			DownloadInfo downloadInfo = new DownloadInfo();
 			downloadInfo.setUrl(urls[i]);
-			downloadInfo.setOutputName(i + ".png");
+			downloadInfo.setOutputName(i+"");
 			downloadInfo.setFlag(i);
 			wget.addTask(downloadInfo);
 		}
