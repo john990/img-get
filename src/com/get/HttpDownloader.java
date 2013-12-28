@@ -54,7 +54,7 @@ public class HttpDownloader extends Downloader {
 
 			if (listener != null) listener.onStart(downloadInfo);
 
-			byte[] buffer = new byte[1204];
+			byte[] buffer = new byte[10240];
 			while ((readed = inStream.read(buffer)) != -1) {
 				downloaded += readed;
 				fs.write(buffer, 0, readed);

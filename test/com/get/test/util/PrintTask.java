@@ -1,10 +1,13 @@
 package com.get.test.util;
 
 import com.get.info.DownloadInfo;
+import com.get.util.Util;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JTextArea;
 
 /**
  * Created by kai on 12/28/13.<br/>
@@ -15,29 +18,42 @@ public class PrintTask {
 
 	private static final int PROGRESS_SIZE = 50;
 	private static int prePieceSize = 0;
+	private JTextArea console;
 
 	static {
 		prePieceSize = 100 / PROGRESS_SIZE;
 	}
 
+	public PrintTask(JTextArea console) {
+		this.console = console;
+	}
+
 	public void printStart(DownloadInfo info) {
 		synchronized (printQueue) {
 			info.setState(DownloadInfo.STATE_START);
-			printQueue.add(info);
+			if (printQueue.indexOf(info) == -1) {
+				printQueue.add(info);
+			}
 			print();
 		}
 	}
+
 	public void printProgress(DownloadInfo info) {
 		synchronized (printQueue) {
 			info.setState(DownloadInfo.STATE_PROGRESS);
-			printQueue.add(info);
+			if (printQueue.indexOf(info) == -1) {
+				printQueue.add(info);
+			}
 			print();
 		}
 	}
+
 	public void printFinish(DownloadInfo info) {
 		synchronized (printQueue) {
 			info.setState(DownloadInfo.STATE_FINISH);
-			printQueue.add(info);
+			if (printQueue.indexOf(info) == -1) {
+				printQueue.add(info);
+			}
 			print();
 		}
 	}
@@ -45,23 +61,24 @@ public class PrintTask {
 	public void printFail(DownloadInfo info) {
 		synchronized (printQueue) {
 			info.setState(DownloadInfo.STATE_FAIL);
-			printQueue.add(info);
+			if (printQueue.indexOf(info) == -1) {
+				printQueue.add(info);
+			}
 			print();
 		}
 	}
 
 	private synchronized void print() {
-		StringBuffer print = new StringBuffer();
 		synchronized (printQueue) {
+			StringBuffer print = new StringBuffer();
 			List<DownloadInfo> queue = (List<DownloadInfo>) printQueue.clone();
 			List<Integer> finished = new ArrayList<Integer>();
-			System.out.print("\\b\\b\\b\\b\\b");
-			for (int i=0;i<queue.size();i++) {
+			for (int i = 0; i < queue.size(); i++) {
 				DownloadInfo progress = queue.get(i);
 				if (progress.getState() == DownloadInfo.STATE_START) {
-					print.append("| " + progress.getUrl() + "\n| " + getProgress(0) + " 0%");
+					print.append("| " + progress.getUrl() + "\n| " + getProgress(0) + " 0%  " + Util.byteToKb(progress.getSize()));
 				} else if (progress.getState() == DownloadInfo.STATE_PROGRESS) {
-					print.append("| " + progress.getUrl() + "\n| " + getProgress(progress.getPercent()) + " " + progress.getPercent() + "%");
+					print.append("| " + progress.getUrl() + "\n| " + getProgress(progress.getPercent()) + " " + progress.getPercent() + "%  " + Util.byteToKb(progress.getSize()));
 				} else if (progress.getState() == DownloadInfo.STATE_FINISH) {
 					print.append("| " + progress.getUrl() + "\n| " + getProgress(100) + " 100%");
 					finished.add(i);
@@ -71,9 +88,8 @@ public class PrintTask {
 				}
 				print.append("\n\n");
 			}
-			System.out.println(print);
-
-			for(int index : finished){
+			console.setText(print.toString());
+			for (int index : finished) {
 				printQueue.remove(index);
 			}
 		}

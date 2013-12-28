@@ -2,22 +2,28 @@ package com.get;
 
 import com.get.info.DownloadInfo;
 
+import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by kai.wang on 12/27/13.
  */
 public class HttpGet {
 
-	private ExecutorService pool;
+	private ThreadPoolExecutor pool;
 
 	private String outputFloder;
 
 	private Downloader.DownloadListener listener;
 
 	public HttpGet(Builder builder){
-		pool = Executors.newFixedThreadPool(builder.threadPoolSize);
+		pool = new ThreadPoolExecutor(builder.threadPoolSize,builder.threadPoolSize, 1,
+				TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
+//		pool = Executors.newFixedThreadPool(builder.threadPoolSize);
 		outputFloder = builder.outputFloder;
 	}
 
@@ -32,8 +38,8 @@ public class HttpGet {
 	 * 任务是否全部完成
 	 * @return
 	 */
-	public boolean isShutdown(){
-		return pool.isShutdown();
+	public boolean hasTask(){
+		return pool.getActiveCount() == 0;
 	}
 
 	public void setDownloadListener(Downloader.DownloadListener listener) {
@@ -62,6 +68,10 @@ public class HttpGet {
 		 */
 		public Builder setOutputFloder(String outputFloder) {
 			this.outputFloder = outputFloder;
+			File file = new File(outputFloder);
+			if(!file.exists()){
+				file.mkdirs();
+			}
 			return this;
 		}
 
