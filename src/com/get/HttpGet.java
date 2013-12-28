@@ -39,7 +39,11 @@ public class HttpGet {
 	 * @return
 	 */
 	public boolean hasTask(){
-		return pool.getActiveCount() == 0;
+		return pool.getActiveCount() == 1;
+	}
+
+	public void shutdown(){
+		pool.shutdown();
 	}
 
 	public void setDownloadListener(Downloader.DownloadListener listener) {

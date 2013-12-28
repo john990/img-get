@@ -30,7 +30,8 @@ public class DownloadProgress implements Downloader.DownloadListener {
 	@Override
 	public void onFinish(DownloadInfo downloadInfo) {
 		print.printFinish(downloadInfo);
-		if (!httpGet.hasTask()) {
+		if (httpGet.hasTask()) {
+			System.out.println("all download finish!");
 			System.exit(1);
 		}
 	}
