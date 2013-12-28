@@ -1,10 +1,15 @@
-package com.wget.info;
+package com.get.info;
 
 /**
  * Created by kai.wang on 12/27/13.
  * 下载文件信息
  */
 public class DownloadInfo {
+	public static final int STATE_START = 1;
+	public static final int STATE_PROGRESS = 2;
+	public static final int STATE_FINISH = 3;
+	public static final int STATE_FAIL = 4;
+
 	private long size = 0;
 	private String name;
 	private String mime;
@@ -12,6 +17,8 @@ public class DownloadInfo {
 	private int percent;
 	private String outputName;
 	private String outputFloder;
+	private int flag;
+	private int state;
 
 	public long getSize() {
 		return size;
@@ -67,5 +74,21 @@ public class DownloadInfo {
 
 	public void setOutputFloder(String outputFloder) {
 		this.outputFloder = outputFloder;
+	}
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
 	}
 }

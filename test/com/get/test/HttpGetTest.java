@@ -1,0 +1,57 @@
+package com.get.test;
+
+import com.get.Downloader;
+import com.get.HttpGet;
+import com.get.info.DownloadInfo;
+
+/**
+ * Created by kai.wang on 12/27/13.
+ */
+public class HttpGetTest implements Downloader.DownloadListener{
+	public static String[] urls = {
+			"http://img.hb.aicdn.com/2c3b0af90a2620d7fb08dcf1c787244cea26c848195e4-AGsUNg_fw236",
+			"http://img.hb.aicdn.com/7e615f1ef19dd6ee342be2dd917b2b38759cc83c10931-y0T1M8_fw236",
+			"http://img.hb.aicdn.com/89f4b6c0226221e6401d2a4d44b160b1185229298374-8wspgi_fw236",
+			"http://img.hb.aicdn.com/ca51eedf51f337ea3a5d73a01fd5d0bce5e3cca16f2fe-g436qJ_fw236",
+			"http://img.hb.aicdn.com/e9bb779534da1c43d6ca6e49cfb5e972517c720013f87-36OAhB_fw236",
+			"http://img.hb.aicdn.com/c0d918954f26a7d8b9b4ed42d964b581a21983a67c99e-trVNoz_fw236"
+	};
+
+	public static void main(String[] args){
+		HttpGetTest test = new HttpGetTest();
+		HttpGet wget = new HttpGet.Builder()
+							.setThreadPoolSize(4)
+							.setOutputFloder("/")
+							.build();
+		wget.setDownloadListener(test);
+		for(int i=0;i<urls.length;i++){
+			DownloadInfo downloadInfo = new DownloadInfo();
+			downloadInfo.setUrl(urls[i]);
+			downloadInfo.setOutputName(i+".png");
+			downloadInfo.setFlag(i);
+			wget.addTask(downloadInfo);
+		}
+	}
+
+	@Override
+	public void onStart(DownloadInfo downloadInfo) {
+		System.out.println("start");
+	}
+
+	@Override
+	public void onFinish(DownloadInfo downloadInfo) {
+		System.out.println(downloadInfo.getFlag()+":finish");
+//		System.exit(1);
+	}
+
+	@Override
+	public void onProgressChange(DownloadInfo downloadInfo) {
+		System.out.println(downloadInfo.getPercent());
+	}
+
+	@Override
+	public void onFail(DownloadInfo downloadInfo) {
+		System.out.println("fail");
+//		System.exit(1);
+	}
+}

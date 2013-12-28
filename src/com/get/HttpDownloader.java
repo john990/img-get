@@ -1,7 +1,6 @@
-package com.wget;
+package com.get;
 
-import com.wget.info.DownloadInfo;
-import com.wget.util.UrlUtil;
+import com.get.info.DownloadInfo;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -19,15 +18,8 @@ public class HttpDownloader extends Downloader {
 	private DownloadInfo downloadInfo;
 	private DownloadListener listener;
 
-	public HttpDownloader(String url, String outputFloder) {
-		this(url, outputFloder, UrlUtil.getFileNameFromUrl(url));
-	}
-
-	public HttpDownloader(String url, String outputFloder, String outputFileName) {
-		downloadInfo = new DownloadInfo();
-		downloadInfo.setOutputFloder(outputFloder);
-		downloadInfo.setUrl(url);
-		downloadInfo.setOutputName(outputFileName);
+	public HttpDownloader(DownloadInfo downloadInfo) {
+		this.downloadInfo = downloadInfo;
 	}
 
 	@Override
@@ -66,8 +58,8 @@ public class HttpDownloader extends Downloader {
 			while ((readed = inStream.read(buffer)) != -1) {
 				downloaded += readed;
 				fs.write(buffer, 0, readed);
-
-				if (listener != null) listener.onProgressChange((int)((downloaded / size) * 100));
+				downloadInfo.setPercent((int)((downloaded / size) * 100));
+				if (listener != null) listener.onProgressChange(downloadInfo);
 			}
 			fs.flush();
 

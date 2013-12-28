@@ -1,6 +1,6 @@
-package com.wget.test;
+package com.get.test;
 
-import com.wget.util.UrlUtil;
+import com.get.util.UrlUtil;
 
 /**
  * Created by kai.wang on 12/27/13.

@@ -1,4 +1,4 @@
-package com.wget.util;
+package com.get.util;
 
 /**
  * Created by kai.wang on 12/27/13.

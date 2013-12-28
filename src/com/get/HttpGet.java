@@ -1,4 +1,6 @@
-package com.wget;
+package com.get;
+
+import com.get.info.DownloadInfo;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -6,7 +8,7 @@ import java.util.concurrent.Executors;
 /**
  * Created by kai.wang on 12/27/13.
  */
-public class WGet {
+public class HttpGet {
 
 	private ExecutorService pool;
 
@@ -14,24 +16,34 @@ public class WGet {
 
 	private Downloader.DownloadListener listener;
 
-	public WGet(Builder builder){
+	public HttpGet(Builder builder){
 		pool = Executors.newFixedThreadPool(builder.threadPoolSize);
 		outputFloder = builder.outputFloder;
-		this.listener = builder.listener;
 	}
 
-	public void addTask(String url,String outputFileName){
-		HttpDownloader downloader = new HttpDownloader(url,outputFloder,outputFileName);
+	public void addTask(DownloadInfo downloadInfo){
+		downloadInfo.setOutputFloder(outputFloder);
+		HttpDownloader downloader = new HttpDownloader(downloadInfo);
 		downloader.setDownloadListener(listener);
 		pool.execute(downloader);
+	}
+
+	/**
+	 * 任务是否全部完成
+	 * @return
+	 */
+	public boolean isShutdown(){
+		return pool.isShutdown();
+	}
+
+	public void setDownloadListener(Downloader.DownloadListener listener) {
+		this.listener = listener;
 	}
 
 	public static class Builder{
 		private int threadPoolSize;
 
 		private String outputFloder = "/";
-
-		private Downloader.DownloadListener listener;
 
 		/**
 		 * 设置线程池大小
@@ -53,13 +65,8 @@ public class WGet {
 			return this;
 		}
 
-		public Builder setDownloadListener(Downloader.DownloadListener listener) {
-			this.listener = listener;
-			return this;
-		}
-
-		public WGet build(){
-			return new WGet(this);
+		public HttpGet build(){
+			return new HttpGet(this);
 		}
 	}
 }

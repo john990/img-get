@@ -1,6 +1,6 @@
-package com.wget.test;
+package com.get.test;
 
-import com.wget.info.DownloadInfo;
+import com.get.info.DownloadInfo;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

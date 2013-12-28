@@ -1,6 +1,6 @@
-package com.wget;
+package com.get;
 
-import com.wget.info.DownloadInfo;
+import com.get.info.DownloadInfo;
 
 /**
  * Created by kai.wang on 12/27/13.
@@ -14,7 +14,7 @@ public abstract class Downloader implements Runnable {
 
 		void onFinish(DownloadInfo downloadInfo);
 
-		void onProgressChange(int progress);
+		void onProgressChange(DownloadInfo downloadInfo);
 
 		void onFail(DownloadInfo downloadInfo);
 	}

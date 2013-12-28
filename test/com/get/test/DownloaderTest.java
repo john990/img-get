@@ -1,4 +1,4 @@
-package com.wget.test;
+package com.get.test;
 
 /**
  * Created by kai.wang on 12/27/13.
