@@ -7,6 +7,7 @@ java muti thread download image from internet.
 how to use
 ==========
 [ImgGetTest.java](https://github.com/kai-wang-john/http-get/blob/master/test/com/get/test/ImgGetTest.java)
+
     import com.get.ImgGet;
     import com.get.info.DownloadInfo;
     
