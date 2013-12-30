@@ -1,6 +1,6 @@
 package com.get.ui;
 
-import com.get.HttpGet;
+import com.get.ImgGet;
 import com.get.info.DownloadInfo;
 import com.get.test.util.DownloadProgress;
 
@@ -39,7 +39,7 @@ public class ProgressUI implements WindowListener{
 		ui.frame.setLocation(400, 200);
 		ui.frame.setVisible(true);
 		ui.frame.addWindowListener(new ProgressUI());
-		HttpGet wget = new HttpGet.Builder().setThreadPoolSize(4).setOutputFloder("/http-get/").build();
+		ImgGet wget = new ImgGet.Builder().setThreadPoolSize(4).setOutputFloder("/http-get/").build();
 		DownloadProgress progress = new DownloadProgress(wget,ui.textArea);
 		wget.setDownloadListener(progress);
 		for (int i = 0; i < urls.length; i++) {

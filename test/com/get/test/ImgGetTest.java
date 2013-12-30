@@ -1,13 +1,12 @@
 package com.get.test;
 
-import com.get.Downloader;
-import com.get.HttpGet;
+import com.get.ImgGet;
 import com.get.info.DownloadInfo;
 
 /**
  * Created by kai.wang on 12/27/13.
  */
-public class HttpGetTest{
+public class ImgGetTest {
 	public static String[] urls = {
 			"http://img.hb.aicdn.com/2c3b0af90a2620d7fb08dcf1c787244cea26c848195e4-AGsUNg_fw236",
 			"http://img.hb.aicdn.com/7e615f1ef19dd6ee342be2dd917b2b38759cc83c10931-y0T1M8_fw236",
@@ -18,8 +17,8 @@ public class HttpGetTest{
 	};
 
 	public static void main(String[] args){
-		HttpGetTest test = new HttpGetTest();
-		HttpGet wget = new HttpGet.Builder()
+		ImgGetTest test = new ImgGetTest();
+		ImgGet wget = new ImgGet.Builder()
 							.setThreadPoolSize(4)
 							.setOutputFloder("/img-get/")
 							.build();

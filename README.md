@@ -6,9 +6,5 @@ java muti thread download file from internet
 
 how to use
 ==========
-todo
+ImgGetTest.java
 
-
-TODO
----------
-mime type -> file extension

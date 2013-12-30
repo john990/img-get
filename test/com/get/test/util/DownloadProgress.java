@@ -1,7 +1,7 @@
 package com.get.test.util;
 
 import com.get.Downloader;
-import com.get.HttpGet;
+import com.get.ImgGet;
 import com.get.info.DownloadInfo;
 
 import javax.swing.JTextArea;
@@ -14,10 +14,10 @@ public class DownloadProgress implements Downloader.DownloadListener {
 
 	PrintTask print;
 
-	private HttpGet httpGet;
+	private ImgGet imgGet;
 	private JTextArea console;
-	public DownloadProgress(HttpGet httpGet,JTextArea console) {
-		this.httpGet = httpGet;
+	public DownloadProgress(ImgGet imgGet,JTextArea console) {
+		this.imgGet = imgGet;
 		this.console = console;
 		print = new PrintTask(console);
 	}
@@ -30,7 +30,7 @@ public class DownloadProgress implements Downloader.DownloadListener {
 	@Override
 	public void onFinish(DownloadInfo downloadInfo) {
 		print.printFinish(downloadInfo);
-		if (httpGet.hasTask()) {
+		if (imgGet.hasTask()) {
 			System.out.println("all download finish!");
 			System.exit(1);
 		}
@@ -44,7 +44,7 @@ public class DownloadProgress implements Downloader.DownloadListener {
 	@Override
 	public void onFail(DownloadInfo downloadInfo) {
 		print.printFail(downloadInfo);
-		if (httpGet.hasTask()) {
+		if (imgGet.hasTask()) {
 			System.exit(1);
 		}
 	}

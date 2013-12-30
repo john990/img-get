@@ -3,8 +3,6 @@ package com.get;
 import com.get.info.DownloadInfo;
 
 import java.io.File;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -12,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by kai.wang on 12/27/13.
  */
-public class HttpGet {
+public class ImgGet {
 
 	private ThreadPoolExecutor pool;
 
@@ -20,7 +18,7 @@ public class HttpGet {
 
 	private Downloader.DownloadListener listener;
 
-	public HttpGet(Builder builder){
+	public ImgGet(Builder builder){
 		pool = new ThreadPoolExecutor(builder.threadPoolSize,builder.threadPoolSize, 1,
 				TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
 //		pool = Executors.newFixedThreadPool(builder.threadPoolSize);
@@ -79,8 +77,8 @@ public class HttpGet {
 			return this;
 		}
 
-		public HttpGet build(){
-			return new HttpGet(this);
+		public ImgGet build(){
+			return new ImgGet(this);
 		}
 	}
 }
