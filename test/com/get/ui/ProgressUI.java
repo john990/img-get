@@ -49,7 +49,7 @@ public class ProgressUI implements WindowListener{
 			downloadInfo.setFlag(i);
 			wget.addTask(downloadInfo);
 		}
-		wget.shutdown();
+		wget.finish();
 	}
 
 	public static String[] urls = {

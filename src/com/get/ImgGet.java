@@ -40,7 +40,10 @@ public class ImgGet {
 		return pool.getActiveCount() == 1;
 	}
 
-	public void shutdown(){
+	/**
+	 * 結束下載(完成當前綫程池中活動的下載)
+	 */
+	public void finish(){
 		pool.shutdown();
 	}
 

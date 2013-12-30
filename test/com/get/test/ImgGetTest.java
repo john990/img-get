@@ -29,6 +29,6 @@ public class ImgGetTest {
 			downloadInfo.setFlag(i);
 			wget.addTask(downloadInfo);
 		}
-		wget.shutdown();
+		wget.finish();
 	}
 }
