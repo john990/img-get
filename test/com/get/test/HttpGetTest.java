@@ -7,7 +7,7 @@ import com.get.info.DownloadInfo;
 /**
  * Created by kai.wang on 12/27/13.
  */
-public class HttpGetTest implements Downloader.DownloadListener{
+public class HttpGetTest{
 	public static String[] urls = {
 			"http://img.hb.aicdn.com/2c3b0af90a2620d7fb08dcf1c787244cea26c848195e4-AGsUNg_fw236",
 			"http://img.hb.aicdn.com/7e615f1ef19dd6ee342be2dd917b2b38759cc83c10931-y0T1M8_fw236",
@@ -21,37 +21,15 @@ public class HttpGetTest implements Downloader.DownloadListener{
 		HttpGetTest test = new HttpGetTest();
 		HttpGet wget = new HttpGet.Builder()
 							.setThreadPoolSize(4)
-							.setOutputFloder("/")
+							.setOutputFloder("/img-get/")
 							.build();
-		wget.setDownloadListener(test);
 		for(int i=0;i<urls.length;i++){
 			DownloadInfo downloadInfo = new DownloadInfo();
 			downloadInfo.setUrl(urls[i]);
-			downloadInfo.setOutputName(i+".png");
+			downloadInfo.setOutputName(i+"");
 			downloadInfo.setFlag(i);
 			wget.addTask(downloadInfo);
 		}
-	}
-
-	@Override
-	public void onStart(DownloadInfo downloadInfo) {
-		System.out.println("start");
-	}
-
-	@Override
-	public void onFinish(DownloadInfo downloadInfo) {
-		System.out.println(downloadInfo.getFlag()+":finish");
-//		System.exit(1);
-	}
-
-	@Override
-	public void onProgressChange(DownloadInfo downloadInfo) {
-		System.out.println(downloadInfo.getPercent());
-	}
-
-	@Override
-	public void onFail(DownloadInfo downloadInfo) {
-		System.out.println("fail");
-//		System.exit(1);
+		wget.shutdown();
 	}
 }
