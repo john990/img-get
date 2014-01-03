@@ -18,7 +18,7 @@ public class ImgGet {
 
 	private Downloader.DownloadListener listener;
 
-	public ImgGet(Builder builder){
+	private ImgGet(Builder builder){
 		pool = new ThreadPoolExecutor(builder.threadPoolSize,builder.threadPoolSize, 1,
 				TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
 //		pool = Executors.newFixedThreadPool(builder.threadPoolSize);
