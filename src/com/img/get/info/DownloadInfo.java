@@ -1,4 +1,4 @@
-package com.get.info;
+package com.img.get.info;
 
 /**
  * Created by kai.wang on 12/27/13.

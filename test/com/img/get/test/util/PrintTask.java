@@ -1,9 +1,8 @@
-package com.get.test.util;
+package com.img.get.test.util;
 
-import com.get.info.DownloadInfo;
-import com.get.util.Util;
+import com.img.get.info.DownloadInfo;
+import com.img.get.util.Util;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

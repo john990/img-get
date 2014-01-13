@@ -1,4 +1,4 @@
-package com.get.test;
+package com.img.get.test;
 
 /**
  * Created by kai.wang on 12/27/13.

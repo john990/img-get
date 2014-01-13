@@ -1,7 +1,7 @@
-package com.get.test;
+package com.img.get.test;
 
-import com.get.ImgGet;
-import com.get.info.DownloadInfo;
+import com.img.get.ImgGet;
+import com.img.get.info.DownloadInfo;
 
 /**
  * Created by kai.wang on 12/27/13.
@@ -17,7 +17,6 @@ public class ImgGetTest {
 	};
 
 	public static void main(String[] args){
-		ImgGetTest test = new ImgGetTest();
 		ImgGet wget = new ImgGet.Builder()
 							.setThreadPoolSize(4)
 							.setOutputFloder("/img-get/")

@@ -1,6 +1,6 @@
-package com.get.test;
+package com.img.get.test;
 
-import com.get.util.UrlUtil;
+import com.img.get.util.UrlUtil;
 
 /**
  * Created by kai.wang on 12/27/13.

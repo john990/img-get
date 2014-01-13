@@ -1,6 +1,6 @@
-package com.get;
+package com.img.get;
 
-import com.get.info.DownloadInfo;
+import com.img.get.info.DownloadInfo;
 
 /**
  * Created by kai.wang on 12/27/13.

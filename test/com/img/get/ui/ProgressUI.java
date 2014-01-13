@@ -1,8 +1,8 @@
-package com.get.ui;
+package com.img.get.ui;
 
-import com.get.ImgGet;
-import com.get.info.DownloadInfo;
-import com.get.test.util.DownloadProgress;
+import com.img.get.ImgGet;
+import com.img.get.info.DownloadInfo;
+import com.img.get.test.util.DownloadProgress;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;

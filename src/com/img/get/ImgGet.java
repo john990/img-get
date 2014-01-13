@@ -1,6 +1,6 @@
-package com.get;
+package com.img.get;
 
-import com.get.info.DownloadInfo;
+import com.img.get.info.DownloadInfo;
 
 import java.io.File;
 import java.util.concurrent.LinkedBlockingQueue;

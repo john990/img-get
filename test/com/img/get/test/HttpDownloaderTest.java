@@ -1,6 +1,6 @@
-package com.get.test;
+package com.img.get.test;
 
-import com.get.info.DownloadInfo;
+import com.img.get.info.DownloadInfo;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

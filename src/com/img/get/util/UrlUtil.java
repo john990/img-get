@@ -1,4 +1,4 @@
-package com.get.util;
+package com.img.get.util;
 
 /**
  * Created by kai.wang on 12/27/13.

@@ -1,7 +1,7 @@
-package com.get;
+package com.img.get;
 
-import com.get.info.DownloadInfo;
-import com.get.util.Util;
+import com.img.get.info.DownloadInfo;
+import com.img.get.util.Util;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

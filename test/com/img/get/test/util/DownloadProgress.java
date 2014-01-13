@@ -1,8 +1,8 @@
-package com.get.test.util;
+package com.img.get.test.util;
 
-import com.get.Downloader;
-import com.get.ImgGet;
-import com.get.info.DownloadInfo;
+import com.img.get.Downloader;
+import com.img.get.ImgGet;
+import com.img.get.info.DownloadInfo;
 
 import javax.swing.JTextArea;
 
