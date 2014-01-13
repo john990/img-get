@@ -1,7 +1,7 @@
 downloader
 ==========
 
-java muti thread download image from internet.
+download image from internet.
 
 
 how to use
