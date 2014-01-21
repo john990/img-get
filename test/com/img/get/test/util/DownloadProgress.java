@@ -12,40 +12,41 @@ import javax.swing.JTextArea;
  */
 public class DownloadProgress implements Downloader.DownloadListener {
 
-	PrintTask print;
+    PrintTask print;
 
-	private ImgGet imgGet;
-	private JTextArea console;
-	public DownloadProgress(ImgGet imgGet,JTextArea console) {
-		this.imgGet = imgGet;
-		this.console = console;
-		print = new PrintTask(console);
-	}
+    private ImgGet imgGet;
+    private JTextArea console;
 
-	@Override
-	public void onStart(DownloadInfo downloadInfo) {
-		print.printStart(downloadInfo);
-	}
+    public DownloadProgress(ImgGet imgGet, JTextArea console) {
+        this.imgGet = imgGet;
+        this.console = console;
+        print = new PrintTask(console);
+    }
 
-	@Override
-	public void onFinish(DownloadInfo downloadInfo) {
-		print.printFinish(downloadInfo);
-		if (imgGet.hasTask()) {
-			System.out.println("all download finish!");
-			System.exit(1);
-		}
-	}
+    @Override
+    public void onStart(DownloadInfo downloadInfo) {
+        print.printStart(downloadInfo);
+    }
 
-	@Override
-	public void onProgressChange(DownloadInfo downloadInfo) {
-		print.printProgress(downloadInfo);
-	}
+    @Override
+    public void onFinish(DownloadInfo downloadInfo) {
+        print.printFinish(downloadInfo);
+        if (imgGet.hasTask()) {
+            System.out.println("all download finish!");
+            System.exit(1);
+        }
+    }
 
-	@Override
-	public void onFail(DownloadInfo downloadInfo) {
-		print.printFail(downloadInfo);
-		if (imgGet.hasTask()) {
-			System.exit(1);
-		}
-	}
+    @Override
+    public void onProgressChange(DownloadInfo downloadInfo) {
+        print.printProgress(downloadInfo);
+    }
+
+    @Override
+    public void onFail(DownloadInfo downloadInfo) {
+        print.printFail(downloadInfo);
+        if (imgGet.hasTask()) {
+            System.exit(1);
+        }
+    }
 }

@@ -16,64 +16,64 @@ import java.net.URLConnection;
  */
 public class HttpDownloader extends Downloader {
 
-	private DownloadInfo downloadInfo;
-	private DownloadListener listener;
+    private DownloadInfo downloadInfo;
+    private DownloadListener listener;
 
-	public HttpDownloader(DownloadInfo downloadInfo) {
-		this.downloadInfo = downloadInfo;
-	}
+    public HttpDownloader(DownloadInfo downloadInfo) {
+        this.downloadInfo = downloadInfo;
+    }
 
-	@Override
-	public void run() {
-		httpDownload(downloadInfo);
-	}
+    @Override
+    public void run() {
+        httpDownload(downloadInfo);
+    }
 
 
-	public void setDownloadListener(DownloadListener listener) {
-		this.listener = listener;
-	}
+    public void setDownloadListener(DownloadListener listener) {
+        this.listener = listener;
+    }
 
-	public boolean httpDownload(DownloadInfo downloadInfo) {
-		float downloaded = 0;
-		float size = 0;
-		int readed = 0;
+    public boolean httpDownload(DownloadInfo downloadInfo) {
+        float downloaded = 0;
+        float size = 0;
+        int readed = 0;
 
-		URL url = null;
-		try {
-			url = new URL(downloadInfo.getUrl());
-		} catch (MalformedURLException e1) {
-			e1.printStackTrace();
-			return false;
-		}
+        URL url = null;
+        try {
+            url = new URL(downloadInfo.getUrl());
+        } catch (MalformedURLException e1) {
+            e1.printStackTrace();
+            return false;
+        }
 
-		try {
-			URLConnection conn = url.openConnection();
-			InputStream inStream = conn.getInputStream();
-			FileOutputStream fs = new FileOutputStream(downloadInfo.getOutputFloder() + downloadInfo.getOutputName() + Util.mimeToCommmonType(conn.getContentType()));
-			size = conn.getContentLength();
-			downloadInfo.setSize((int) size);
+        try {
+            URLConnection conn = url.openConnection();
+            InputStream inStream = conn.getInputStream();
+            FileOutputStream fs = new FileOutputStream(downloadInfo.getOutputFloder() + downloadInfo.getOutputName() + Util.mimeToCommmonType(conn.getContentType()));
+            size = conn.getContentLength();
+            downloadInfo.setSize((int) size);
 
-			if (listener != null) listener.onStart(downloadInfo);
+            if (listener != null) listener.onStart(downloadInfo);
 
-			byte[] buffer = new byte[10240];
-			while ((readed = inStream.read(buffer)) != -1) {
-				downloaded += readed;
-				fs.write(buffer, 0, readed);
-				downloadInfo.setPercent((int) ((downloaded / size) * 100));
-				if (listener != null) listener.onProgressChange(downloadInfo);
-			}
-			fs.flush();
+            byte[] buffer = new byte[10240];
+            while ((readed = inStream.read(buffer)) != -1) {
+                downloaded += readed;
+                fs.write(buffer, 0, readed);
+                downloadInfo.setPercent((int) ((downloaded / size) * 100));
+                if (listener != null) listener.onProgressChange(downloadInfo);
+            }
+            fs.flush();
 
-			if (listener != null) listener.onFinish(downloadInfo);
+            if (listener != null) listener.onFinish(downloadInfo);
 
-			return true;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return false;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
+            return true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }

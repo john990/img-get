@@ -8,14 +8,13 @@ import com.img.get.info.DownloadInfo;
 public abstract class Downloader implements Runnable {
 
 
+    public interface DownloadListener {
+        void onStart(DownloadInfo downloadInfo);
 
-	public interface DownloadListener{
-		void onStart(DownloadInfo downloadInfo);
+        void onFinish(DownloadInfo downloadInfo);
 
-		void onFinish(DownloadInfo downloadInfo);
+        void onProgressChange(DownloadInfo downloadInfo);
 
-		void onProgressChange(DownloadInfo downloadInfo);
-
-		void onFail(DownloadInfo downloadInfo);
-	}
+        void onFail(DownloadInfo downloadInfo);
+    }
 }

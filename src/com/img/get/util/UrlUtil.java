@@ -5,10 +5,10 @@ package com.img.get.util;
  */
 public class UrlUtil {
 
-	public static String getFileNameFromUrl(String url) {
-		if (url == null) {
-			return "";
-		}
-		return url.substring(url.lastIndexOf("/") + 1, url.length());
-	}
+    public static String getFileNameFromUrl(String url) {
+        if (url == null) {
+            return "";
+        }
+        return url.substring(url.lastIndexOf("/") + 1, url.length());
+    }
 }
